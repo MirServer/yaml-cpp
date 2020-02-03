@@ -18,9 +18,7 @@ TEST(ParserTest, Empty) {
 }
 
 TEST(ParserTest, CVE_2017_5950) {
-    std::string excessive_recursion;
-    for (auto i = 0; i != 16384; ++i)
-        excessive_recursion.push_back('[');
+    std::string excessive_recursion(16384, '[');
     std::istringstream input{excessive_recursion};
     Parser parser{input};
 
@@ -29,9 +27,7 @@ TEST(ParserTest, CVE_2017_5950) {
 }
 
 TEST(ParserTest, CVE_2018_20573) {
-    std::string excessive_recursion;
-    for (auto i = 0; i != 20535; ++i)
-        excessive_recursion.push_back('{');
+    std::string excessive_recursion(20535, '{');
     std::istringstream input{excessive_recursion};
     Parser parser{input};
 
@@ -40,9 +36,7 @@ TEST(ParserTest, CVE_2018_20573) {
 }
 
 TEST(ParserTest, CVE_2018_20574) {
-    std::string excessive_recursion;
-    for (auto i = 0; i != 21989; ++i)
-        excessive_recursion.push_back('{');
+    std::string excessive_recursion(21989, '{');
     std::istringstream input{excessive_recursion};
     Parser parser{input};
 
@@ -51,10 +45,7 @@ TEST(ParserTest, CVE_2018_20574) {
 }
 
 TEST(ParserTest, CVE_2019_6285) {
-    std::string excessive_recursion;
-    for (auto i = 0; i != 23100; ++i)
-        excessive_recursion.push_back('[');
-    excessive_recursion.push_back('f');
+    std::string excessive_recursion = std::string(23100, '[') + 'f';
     std::istringstream input{excessive_recursion};
     Parser parser{input};
 
